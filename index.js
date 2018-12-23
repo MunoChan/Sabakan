@@ -3,6 +3,7 @@
 //*=====メインモジュール=====
 
 const config = require("./modules/config");
+const bot = require("./modules/bot");
 
 //*==========
 
@@ -13,7 +14,9 @@ try
         const conf = config.loadConfigFile();
         if(checkConfig(conf))
         {
-            console.log(conf);
+            // Bot起動
+            const Bot = new bot.Bot(conf);
+            Bot.login();
         }
         else
         {
