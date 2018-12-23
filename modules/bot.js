@@ -4,6 +4,8 @@
 
 const discord = require("discord.js");
 
+const guild = require("./guild");
+
 //*==========
 
 /**
@@ -21,6 +23,8 @@ class Bot
         this.prefix = conf["prefix"];
         this.token = conf["token"];
 
+        this.guilddatas = guild.loadAllDatas();
+
         this.client = new discord.Client();
 
         /**Bot起動時の処理 */
@@ -29,6 +33,7 @@ class Bot
             console.log("Ready!");
         });
 
+        /**メッセージ受信時の処理 */
         this.client.on("message", (message) =>
         {
             if(!message.author.bot && message.guild != null)
